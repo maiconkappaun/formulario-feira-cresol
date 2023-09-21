@@ -9,34 +9,50 @@
 
 <body>
     <div>
-        <label for="">Nome:</label>
-        <input type="text" name="nome" id="nome">
+        <label for="">Nome completo:</label>
+        <input type="text" name="nome" id="nome" oninput="verificarCampos()">
     </div>
     <div>
         <label for="">CPF:</label>
-        <input type="text" name="cpf" id="cpf">
+        <input type="text" name="cpf" id="cpf" oninput="verificarCampos()">
     </div>
     <div>
         <label for="">Telefone:</label>
-        <input type="number" name="telefone" id="telefone">
+        <input type="number" name="telefone" id="telefone" oninput="verificarCampos()">
     </div>
-    <h1>Escolha como abrir o perfil do Instagram:</h1>
     <ul style="visibility: hidden;" >
         <li style="visibility: hidden;" ><a style="visibility: hidden;" href="instagram://user?username=cresolalianca" id="meuLink"></a></li>
     </ul>
-    <button onclick="pegarDados()">Confirmar</button>
+    <!-- <div id="mensagem" style="display: none;">Todos os campos estão preenchidos!</div> -->
+    <div id="mensagem2" style="display: none;">Preencher todos os campos</div>
+
+    <button disabled id="botao" onclick="pegarDados()">Confirmar</button>
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
         async function pegarDados() {
             var nome = document.getElementById('nome').value.toUpperCase()
             await salvar(nome, nome, nome)
-            clicarNoLink()
+            await clicarNoLink()
         }
         function clicarNoLink() {
             var link = document.getElementById("meuLink");
             if (link) {
                 link.click();
+            }
+        }
+        function verificarCampos() {
+            var nome = document.getElementById('nome').value;
+            var cpf = document.getElementById('cpf').value;
+            var telefone = document.getElementById('telefone').value;
+
+            if (nome !== "" && cpf !== "" && telefone !== "") {
+                document.getElementById('mensagem2').style.display = 'none';
+                document.getElementById("botao").disabled = false;
+
+            } else {
+                document.getElementById('mensagem2').style.display = 'block';
+                document.getElementById("botao").disabled = true;
             }
         }
     </script>
