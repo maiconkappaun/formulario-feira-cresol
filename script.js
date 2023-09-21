@@ -1,6 +1,6 @@
 var axios = require('axios')
 
-function salvar(nome, cpf, telefone){
+async function salvar(nome, cpf, telefone){
      axios.post('https://sheetdb.io/api/v1/2wrscdvn2tr9y',{
         "data": {
             "Nome": nome, 

@@ -20,22 +20,43 @@
         <label for="">Telefone:</label>
         <input type="number" name="telefone" id="telefone">
     </div>
-    <button onclick="pegarDados()"> <a href="intent://instagram.com/_u/cresolalianca/#Intent;package=com.instagram.android;scheme=https;end">Abrir Instagram</a>
-    </button>
+    <a onclick="pegarDados()" jsname="UWckNb" href="https://www.instagram.com/cresolalianca/" jscontroller="M9mgyc"
+        jsaction="rcuQ6b:npT2md" data-ved="2ahUKEwj5oZz-6LuBAxW_qZUCHZQ5DGIQFnoECA4QAQ"
+        ping="/url?sa=t&amp;source=web&amp;rct=j&amp;opi=89978449&amp;url=https://www.instagram.com/cresolalianca/&amp;ved=2ahUKEwj5oZz-6LuBAxW_qZUCHZQ5DGIQFnoECA4QAQ"><br>
+        <h3 class="LC20lb MBeuO DKV0Md">Cresol Aliança (@cresolalianca)</h3>
+        <div class="notranslate TbwUpd NJjxre iUh30 ojE3Fb"><span class="DDKf1c qSQKQd" style="height:26px;width:26px">
+                <div class="eqA2re UnOTSe Vwoesf" aria-hidden="true"><img class="XNo5Ab"
+                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAABU1BMVEVHcExIETGJE378lA3tD6r+gAP9mQd3Fv3+bwTtBLF3F/z8HYb2AZ39EoX9egv9tgn7Q0n9O1rbBMz9UzH////+AmT+IHf+wAP+A3D/9vX+ygD+A73+swD+BrH+CoeUFv3+LkiBE/r+PkX+jQD/17T/Y53+AY9zFP3+ogH+dBn+LVf+AFn+AH3/scjlANX9A6X/8vv+fgD+LGasAuPYANb+QzTuYuD+weP+Ui/+VwT+Zx3AAd7+Phr+3PT9GZjxCMz+ruj+AJj+ZQHyAMD+gxHNAdv+VBnSGvP/wMj+yWf+ttfyALH+W8L+G2STB+qhAff+Zi7+GlL/0cj+KjL3vPD7I7vkAMj+lwOuGPz/6uP+AEL/y9b/vrn+foH7dtHYXuj+Yoe+DvP+rGLiOuTpF+P+fp/+Wzf+lXv+fSXzHdT+woH+mjj+XFnWgvj+gl7+jwv+xlD0p65GAAAAFHRSTlMAAQFcXPLZzv7SXM/948TEXNjEw5VwnIwAAAI4SURBVCiRTdLZV5tAFMDhqXqM22lrexmhGiREaUJQCBZJIpBmNc2+m8XGfV/a//+pd0js8fcwD3zMsJxLCCErge9YKFSv1w8ODo6OjgqFH18WCPlAyFzAl9BMCiis/jJuIwFG29sNX/DqPqvf7+dQV0I+NS7Ozs4Opz2k0+lcrlJZIIFtrPFiwLuMCbPKMkEaNLoAbrf7c1rXBbCDQX1tjQwGg4sXMK7207nNt3oGTHQ9o5Dj4+MLA9A2N4MYUtWt9sDIZBSR4RW4aHhQsFpFd8HNuOApokaur68PoZvrBXXdZi9j67gzY8OupvHk4SE9wSue5xlglMu46HhiGZHnSa+nT6AsitoYbE1UFBtsRRH3YJfnOeJ54g3s8ZSCwVMRMwCfhshxHKG0hthSz6HEUUpFzT9xhqoq/YbTDi6llmlSyiPyHGIMUZI7DC0ZBEk1TZMzgHKxGVqWg+gknDaMJUlqjWEcq/1Hx3mF02QxcSuAUCrhoqqt0R6cxzieFIvJV2gnU6lUs81+QlvG/aPSFJPJbBSG2SiWbd7d3VqWLEujIZgcr5FkdikrwFM8n8/f30dTzeZtwuo8gzCq8SLJLsXjjyA8hVnx+FKqWHSeBbhp1ahC0MLhHYDhzlvtIUCpo9aoRz7GwyeRyKPwfkyEO0dWTbpK5pltbW1t/P3ld3l5eY8fJssmxdFdZLYxDW+KnITz0VTCktVVnNu5RWbf/BhHThCbCXmd+DM//2lmM/2Tjza/fkb7B9sPjRNHjz//AAAAAElFTkSuQmCC"
+                        style="height:26px;width:26px" alt="" data-atf="1" data-frt="0"></div>
+            </span>
+            <div><span class="VuuXrf">Instagram</span>
+                <div class="byrV5b"><cite class="qLRx3b tjvcx GvPZzd cHaqb" role="text">https://www.instagram.com<span
+                            class="dyjrff ob9lvb" role="text"> › cresolalianca</span></cite></div>
+            </div>
+        </div>
+    </a>
+    <button onclick="pegarDados()">Confirmar</button>
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
-        function pegarDados() {
+        // async function minhaFuncao() {
+        //     console.log("Antes de chamar a função assíncrona");
+        //     await funcaoAssincrona();
+        //     console.log("Após a função assíncrona ser concluída");
+        // }
+        async function pegarDados() {
             var nome = document.getElementById('nome').value.toUpperCase()
-            salvar(nome, nome, nome)
+            await salvar(nome, nome, nome)
+            // location.href = location.href;
+            // window.close()
             abrirPagina()
         }
         function abrirPagina() {
             // Especifique o URL da página HTML que você deseja abrir
-            var url = 'https://www.instagram.com/cresolalianca/';
-
-            // Abra a página em uma nova janela ou aba do navegador
+            var url = 'https://instagram.com/cresolalianca?igshid=MzRlODBiNWFlZA==';
             window.open(url, '_blank');
+            
+            // Abra a página em uma nova janela ou aba do navegador
         }
     </script>
 </body>
