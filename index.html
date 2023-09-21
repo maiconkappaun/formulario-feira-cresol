@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Formulário Cresol</title>
 </head>
 
 <body>
@@ -20,15 +20,21 @@
         <label for="">Telefone:</label>
         <input type="number" name="telefone" id="telefone">
     </div>
-    <button onclick="pegarDados()">Clique para Chamar a Função</button>
+    <button onclick="pegarDados()"> enviar</button>
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
         function pegarDados() {
             var nome = document.getElementById('nome').value.toUpperCase()
             salvar(nome, nome, nome)
-            // asdadasdsa
-            // asdasdas
+            abrirPagina()
+        }
+        function abrirPagina() {
+            // Especifique o URL da página HTML que você deseja abrir
+            var url = 'https://www.instagram.com/cresolalianca/';
+
+            // Abra a página em uma nova janela ou aba do navegador
+            window.open(url, '_blank');
         }
     </script>
 </body>
