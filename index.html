@@ -22,10 +22,10 @@
     </div>
     <h1>Escolha como abrir o perfil do Instagram:</h1>
     <ul>
-        <li><a href="instagram://user?username=cresolalianca">Abrir no aplicativo do Instagram</a></li>
-        <li><a href="https://www.instagram.com/cresolalianca/" target="_blank">Abrir no navegador</a></li>
+        <li><a href="instagram://user?username=cresolalianca" id="meuLink">Abrir no aplicativo do Instagram</a></li>
+        <!-- <li><a href="https://www.instagram.com/cresolalianca/" target="_blank">Abrir no navegador</a></li> -->
     </ul>
-    <a onclick="pegarDados()" jsname="UWckNb" href="https://www.instagram.com/cresolalianca/" jscontroller="M9mgyc"
+    <!-- <a onclick="pegarDados()" jsname="UWckNb" href="https://www.instagram.com/cresolalianca/" jscontroller="M9mgyc"
         jsaction="rcuQ6b:npT2md" data-ved="2ahUKEwj5oZz-6LuBAxW_qZUCHZQ5DGIQFnoECA4QAQ"
         ping="/url?sa=t&amp;source=web&amp;rct=j&amp;opi=89978449&amp;url=https://www.instagram.com/cresolalianca/&amp;ved=2ahUKEwj5oZz-6LuBAxW_qZUCHZQ5DGIQFnoECA4QAQ"><br>
         <h3 class="LC20lb MBeuO DKV0Md">Cresol Aliança (@cresolalianca)</h3>
@@ -39,7 +39,7 @@
                             class="dyjrff ob9lvb" role="text"> › cresolalianca</span></cite></div>
             </div>
         </div>
-    </a>
+    </a> -->
     <button onclick="pegarDados()">Confirmar</button>
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -52,17 +52,32 @@
         async function pegarDados() {
             var nome = document.getElementById('nome').value.toUpperCase()
             await salvar(nome, nome, nome)
+            clicarNoLink()
             // location.href = location.href;
             // window.close()
-            abrirPagina()
+            // abrirPagina()
         }
-        function abrirPagina() {
-            // Especifique o URL da página HTML que você deseja abrir
-            var url = 'https://instagram.com/cresolalianca?igshid=MzRlODBiNWFlZA==';
-            window.open(url, '_blank');
+        // function abrirPagina() {
+        //     // Especifique o URL da página HTML que você deseja abrir
+        //     var url = 'https://instagram.com/cresolalianca?igshid=MzRlODBiNWFlZA==';
+        //     window.open(url, '_blank');
             
-            // Abra a página em uma nova janela ou aba do navegador
+        //     // Abra a página em uma nova janela ou aba do navegador
+        // }
+        function clicarNoLink() {
+            // Obtém o elemento de link pelo ID
+            var link = document.getElementById("meuLink");
+
+            // Verifica se o elemento de link foi encontrado
+            if (link) {
+                // Dispara o evento de clique no link
+                link.click();
+            }
         }
+
+        // Chama a função para clicar no link após um atraso de 2 segundos (por exemplo)
+        // setTimeout(clicarNoLink, 2000); // Atraso de 2 segundos (2000 milissegundos)
+   
     </script>
 </body>
 
