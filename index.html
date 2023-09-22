@@ -70,8 +70,6 @@
         }
 
         #quiz-container {
-            /* display: none; */
-            /* Inicialmente oculto */
             background-color: rgba(255, 255, 255, 0.8);
             padding: 20px;
             border-radius: 10px;
@@ -81,6 +79,12 @@
 
         h1 {
             color: #F58220;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.068);
+        }
+
+        h3 {
+            color: #005C46;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.068);
         }
 
         label {
@@ -178,12 +182,56 @@
             color: #003025;
             /* Cor laranja mais escura ao passar o mouse (opcional) */
         }
+
+        /* Estilização dos radio buttons */
+        .radio-socio {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        /* Estilo do visual dos radio buttons */
+        .radio-socio+label::before {
+            content: "";
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            border: 2px solid #F58220;
+            background-color: transparent;
+            border-radius: 50%;
+        }
+
+        /* Estilo dos radio buttons marcados */
+        .radio-socio:checked+label::before {
+            background-color: #F58220;
+        }
+
+        /* Estilo do texto da label */
+        .radio-socio+label {
+            font-size: 16pt;
+            color: #F58220;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Alinhamento horizontal dos radio buttons com o texto da label */
+        .radio-group {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Espaçamento entre os radio buttons e labels */
+        .radio-group label {
+            margin-right: 20px;
+        }
     </style>
 </head>
 
 <body>
     <div id="quiz-container">
         <h1 style="text-align: center;" id="titulo">Quase lá...</h1>
+        <h3 style="text-align: center;" id="titulo2">Cadastre-se e concora a prêmios!</h3>
         <!-- <div style="display: none;" id="qrcode">
             <img src="Qrlogo-free.png" alt="">
             <button id="reiniciar" onclick="reiniciar()">Novo</button>
@@ -199,6 +247,14 @@
         <div id="divtelefone">
             <label for="">Telefone:</label>
             <input type="number" name="telefone" id="telefone" oninput="verificarCampos()">
+        </div>
+        <div id="divsocio">
+            <div class="radio-group">
+                <input type="radio" name="socio" value="sim" id="socioSim" class="radio-socio" onchange="verificarCampos()">
+                <label for="socioSim">Sim</label>
+                <input type="radio" name="socio" value="nao" style="margin-left: 2em;" id="socioNao" class="radio-socio" onchange="verificarCampos()">
+                <label for="socioNao">Não</label>
+            </div>
         </div>
         <div id="divlgpd">
             <br>
@@ -222,9 +278,15 @@
             <div class="modal-conteudo">
                 <span class="fecharModal" id="fecharModal">&times;</span>
                 <h2>LGPD - Lei Geral de Proteção de Dados</h2>
-                <p>A Lei Geral de Proteção de Dados Pessoais (LGPD), Lei n° 13.709/2018, foi promulgada para proteger os direitos fundamentais de liberdade e de privacidade e a livre formação da personalidade de cada indivíduo. A Lei fala sobre o tratamento de dados pessoais, dispostos em meio físico ou digital, feito por pessoa física ou jurídica de direito público ou privado, englobando um amplo conjunto de operações que podem ocorrer em meios manuais ou digitais.</p>
-                <p>Os dados registrados neste formulário, serão armazenados em nuvem, e serão gerenciados pela Cresol.</p>
-                <p>Estes, serão utilizados exclusivamente para realização do sorteio e futuros contatos para oferta de nossos serviços financeiros.</p>
+                <p>A Lei Geral de Proteção de Dados Pessoais (LGPD), Lei n° 13.709/2018, foi promulgada para proteger os
+                    direitos fundamentais de liberdade e de privacidade e a livre formação da personalidade de cada
+                    indivíduo. A Lei fala sobre o tratamento de dados pessoais, dispostos em meio físico ou digital,
+                    feito por pessoa física ou jurídica de direito público ou privado, englobando um amplo conjunto de
+                    operações que podem ocorrer em meios manuais ou digitais.</p>
+                <p>Os dados registrados neste formulário, serão armazenados em nuvem, e serão gerenciados pela Cresol.
+                </p>
+                <p>Estes, serão utilizados exclusivamente para realização do sorteio e futuros contatos para oferta de
+                    nossos serviços financeiros.</p>
                 <!-- Adicione o texto referente à LGPD aqui -->
             </div>
         </div>
@@ -239,6 +301,7 @@
             var lgpdCheckbox = document.getElementById('lgpd');
             let now = new Date
             const titulo = document.getElementById("titulo");
+            const titulo2 = document.getElementById("titulo2");
             const divnome = document.getElementById("divnome");
             const divcpf = document.getElementById("divcpf");
             const divtelefone = document.getElementById("divtelefone");
@@ -246,7 +309,9 @@
             const botao = document.getElementById("botao");
             const mensagem2 = document.getElementById("mensagem2");
             const modaldiv = document.getElementById("modaldiv");
+            const divsocio = document.getElementById("divsocio");
             titulo.textContent = "Enviado!";
+            titulo2.style.display = "none";
             divnome.style.display = "none";
             divcpf.style.display = "none";
             divtelefone.style.display = "none";
@@ -254,6 +319,7 @@
             botao.style.display = "none";
             mensagem2.style.display = "none";
             modaldiv.style.display = "none";
+            divsocio.style.display = "none";
             await salvar(now, nome, cpf, telefone)
             await clicarNoLink()
         }
@@ -268,8 +334,10 @@
             var cpf = document.getElementById('cpf').value;
             var telefone = document.getElementById('telefone').value;
             var lgpdCheckbox = document.getElementById('lgpd');
+            var socioSim = document.getElementById('socioSim');
+            var socioNao = document.getElementById('socioNao');
 
-            if (nome !== "" && cpf !== "" && telefone !== "" && lgpdCheckbox.checked) {
+            if (nome !== "" && cpf !== "" && telefone !== "" && lgpdCheckbox.checked && (socioSim.checked || socioNao.checked)) {
                 document.getElementById('mensagem2').style.display = 'none';
                 document.getElementById("botao").style.display = 'block';
                 document.getElementById("botao").style.textAlign = 'center';
