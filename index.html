@@ -58,10 +58,11 @@
             background-color: #F58220;
             color: white;
             border: none;
-            padding: 10px 40px;
+            padding: 20px 40px;
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            font-size: 18pt;
         }
 
         button:hover {
@@ -85,8 +86,15 @@
         label {
             font-size: 16pt;
         }
-        #botao{
+
+        #botao {
             display: none;
+        }
+
+        @media (max-width: 770px) {
+            #quiz-container {
+                width: 80%;
+            }
         }
     </style>
 </head>
@@ -94,19 +102,19 @@
 <body>
     <div id="quiz-container">
         <h1 style="text-align: center;" id="titulo">Quase lá...</h1>
-        <div style="display: none;" id="qrcode">
+        <!-- <div style="display: none;" id="qrcode">
             <img src="Qrlogo-free.png" alt="">
             <button id="reiniciar" onclick="reiniciar()">Novo</button>
-        </div>
-        <div>
+        </div> -->
+        <div id="divnome">
             <label for="">Nome completo:</label>
             <input type="text" name="nome" id="nome" oninput="verificarCampos()">
         </div>
-        <div>
+        <div id="divcpf">
             <label for="">CPF:</label>
             <input type="number" name="cpf" id="cpf" oninput="verificarCampos()">
         </div>
-        <div>
+        <div id="divtelefone">
             <label for="">Telefone:</label>
             <input type="number" name="telefone" id="telefone" oninput="verificarCampos()">
         </div>
@@ -126,6 +134,14 @@
             var nome = document.getElementById('nome').value.toUpperCase()
             var cpf = document.getElementById('cpf').value;
             var telefone = document.getElementById('telefone').value;
+            const titulo = document.getElementById("titulo");
+            const divnome = document.getElementById("divnome");
+            const divcpf = document.getElementById("divcpf");
+            const divtelefone = document.getElementById("divtelefone");
+            titulo.textContent = "Enviado!";
+            divnome.style.display = "none";
+            divcpf.style.display = "none";
+            divtelefone.style.display = "none";
             await salvar(nome, cpf, telefone)
             await clicarNoLink()
         }
