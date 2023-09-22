@@ -5,34 +5,128 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulário Cresol</title>
+    <style>
+        body {
+            background-color: white;
+            /* Cor de fundo padrão */
+            transition: background-color 1s ease;
+            /* Transição suave da cor de fundo */
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            transition: background-color 1s ease;
+            background-image: url('https://cresol.com.br/wp-content/uploads/2022/04/Icone-03-300x300.png');
+            background-color: rgba(245, 130, 32, 0.3);
+            background-size: 7em;
+        }
+
+        label {
+            color: #F58220;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            padding: 10px;
+            border: none;
+            border-bottom: 2px solid #F58220;
+            margin: 10px;
+            width: 90%;
+            outline: none;
+            font-size: 16pt;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus {
+            background-color: #d254002a;
+        }
+
+        #mensagem2 {
+            color: red;
+            display: none;
+        }
+
+        button {
+            /* display: none; */
+            background-color: #F58220;
+            color: white;
+            border: none;
+            padding: 10px 40px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #D25400;
+        }
+
+        #quiz-container {
+            /* display: none; */
+            /* Inicialmente oculto */
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            text-align: left;
+        }
+
+        h1 {
+            color: #F58220;
+        }
+
+        label {
+            font-size: 14pt;
+        }
+        #botao{
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
-    <div>
-        <label for="">Nome completo:</label>
-        <input type="text" name="nome" id="nome" oninput="verificarCampos()">
+    <div id="quiz-container">
+        <h1 style="text-align: center;" id="titulo">Quase lá...</h1>
+        <div style="display: none;" id="qrcode">
+            <img src="Qrlogo-free.png" alt="">
+            <button id="reiniciar" onclick="reiniciar()">Novo</button>
+        </div>
+        <div>
+            <label for="">Nome completo:</label>
+            <input type="text" name="nome" id="nome" oninput="verificarCampos()">
+        </div>
+        <div>
+            <label for="">CPF:</label>
+            <input type="number" name="cpf" id="cpf" oninput="verificarCampos()">
+        </div>
+        <div>
+            <label for="">Telefone:</label>
+            <input type="number" name="telefone" id="telefone" oninput="verificarCampos()">
+        </div>
+        <ul style="visibility: hidden;">
+            <li style="visibility: hidden;"><a style="visibility: hidden;"
+                    href="instagram://user?username=cresolalianca" id="meuLink"></a></li>
+        </ul>
+        <div id="mensagem2" style="display: none;">Preencher todos os campos</div>
+        <div id="botao" style="text-align: center;">
+            <button style="text-align: center;" onclick="pegarDados()">Confirmar</button>
+        </div>
     </div>
-    <div>
-        <label for="">CPF:</label>
-        <input type="text" name="cpf" id="cpf" oninput="verificarCampos()">
-    </div>
-    <div>
-        <label for="">Telefone:</label>
-        <input type="number" name="telefone" id="telefone" oninput="verificarCampos()">
-    </div>
-    <ul style="visibility: hidden;" >
-        <li style="visibility: hidden;" ><a style="visibility: hidden;" href="instagram://user?username=cresolalianca" id="meuLink"></a></li>
-    </ul>
-    <!-- <div id="mensagem" style="display: none;">Todos os campos estão preenchidos!</div> -->
-    <div id="mensagem2" style="display: none;">Preencher todos os campos</div>
-
-    <button disabled id="botao" onclick="pegarDados()">Confirmar</button>
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
         async function pegarDados() {
             var nome = document.getElementById('nome').value.toUpperCase()
-            await salvar(nome, nome, nome)
+            var cpf = document.getElementById('cpf').value;
+            var telefone = document.getElementById('telefone').value;
+            await salvar(nome, cpf, telefone)
             await clicarNoLink()
         }
         function clicarNoLink() {
@@ -48,11 +142,12 @@
 
             if (nome !== "" && cpf !== "" && telefone !== "") {
                 document.getElementById('mensagem2').style.display = 'none';
-                document.getElementById("botao").disabled = false;
+                document.getElementById("botao").style.display = 'block';
+                document.getElementById("botao").style.textAlign = 'center';
 
             } else {
                 document.getElementById('mensagem2').style.display = 'block';
-                document.getElementById("botao").disabled = true;
+                document.getElementById("botao").style.display = 'none';
             }
         }
     </script>
