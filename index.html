@@ -225,6 +225,9 @@
         .radio-group label {
             margin-right: 20px;
         }
+        #botao2{
+            display: none;
+        }
     </style>
 </head>
 
@@ -277,6 +280,9 @@
         <div id="botao" style="text-align: center;">
             <button style="text-align: center;" onclick="pegarDados()">Confirmar</button>
         </div>
+        <div id="botao2" style="text-align: center;">
+            <button style="text-align: center; "  onclick="clicarNoLink()">Abrir Instagram</button>
+        </div>
         <!-- Modal -->
         <div id="modal" class="modal">
             <div class="modal-conteudo">
@@ -322,6 +328,7 @@
             const divtelefone = document.getElementById("divtelefone");
             const divlgpd = document.getElementById("divlgpd");
             const botao = document.getElementById("botao");
+            const botao2 = document.getElementById("botao2");
             const mensagem2 = document.getElementById("mensagem2");
             const modaldiv = document.getElementById("modaldiv");
             const divsocio = document.getElementById("divsocio");
@@ -332,6 +339,7 @@
             divtelefone.style.display = "none";
             divlgpd.style.display = "none";
             botao.style.display = "none";
+            botao2.style.display = "block";
             mensagem2.style.display = "none";
             modaldiv.style.display = "none";
             divsocio.style.display = "none";
