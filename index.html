@@ -252,9 +252,11 @@
             <label>É associado(a):</label>
             <br>
             <div class="radio-group">
-                <input type="radio" name="socio" value="sim" id="socioSim" class="radio-socio" onchange="verificarCampos()">
+                <input type="radio" name="socio" value="sim" id="socioSim" class="radio-socio"
+                    onchange="verificarCampos()">
                 <label for="socioSim">Sim</label>
-                <input type="radio" name="socio" value="nao" style="margin-left: 7em;" id="socioNao" class="radio-socio" onchange="verificarCampos()">
+                <input type="radio" name="socio" value="nao" style="margin-left: 7em;" id="socioNao" class="radio-socio"
+                    onchange="verificarCampos()">
                 <label for="socioNao">Não</label>
             </div>
         </div>
@@ -302,6 +304,17 @@
             var telefone = document.getElementById('telefone').value;
             var lgpdCheckbox = document.getElementById('lgpd');
             let now = new Date
+            // Obtenha uma referência aos radio buttons
+            var radioSim = document.getElementById('socioSim');
+            var radioNao = document.getElementById('socioNao');
+
+            // Verifique qual radio button está selecionado
+            var escolha = "";
+            if (radioSim.checked) {
+                escolha = "Sim";
+            } else if (radioNao.checked) {
+                escolha = "Não";
+            }
             const titulo = document.getElementById("titulo");
             const titulo2 = document.getElementById("titulo2");
             const divnome = document.getElementById("divnome");
@@ -322,7 +335,7 @@
             mensagem2.style.display = "none";
             modaldiv.style.display = "none";
             divsocio.style.display = "none";
-            await salvar(now, nome, cpf, telefone)
+            await salvar(now, nome, cpf, telefone, escolha)
             await clicarNoLink()
         }
         function clicarNoLink() {
