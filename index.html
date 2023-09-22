@@ -138,10 +138,14 @@
             const divnome = document.getElementById("divnome");
             const divcpf = document.getElementById("divcpf");
             const divtelefone = document.getElementById("divtelefone");
+            const botao = document.getElementById("botao");
+            const mensagem2 = document.getElementById("mensagem2");
             titulo.textContent = "Enviado!";
             divnome.style.display = "none";
             divcpf.style.display = "none";
             divtelefone.style.display = "none";
+            botao.style.display = "none";
+            mensagem2.style.display = "none";
             await salvar(nome, cpf, telefone)
             await clicarNoLink()
         }
