@@ -96,6 +96,88 @@
                 width: 80%;
             }
         }
+
+        /* Estilização do checkbox */
+        input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        /* Estilo do visual do checkbox */
+        input[type="checkbox"]+label::before {
+            content: "";
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            border: 2px solid #F58220;
+            background-color: transparent;
+            border-radius: 3px;
+        }
+
+        /* Estilo do checkbox marcado */
+        input[type="checkbox"]:checked+label::before {
+            background-color: #F58220;
+        }
+
+        /* Estilo do texto da label */
+        label {
+            font-size: 16pt;
+            color: #F58220;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Estilo do modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        /* Conteúdo do modal */
+        .modal-conteudo {
+            background-color: #fff;
+            margin: 10% auto;
+            padding: 20px;
+            border-radius: 5px;
+            width: 80%;
+            max-width: 600px;
+            position: relative;
+        }
+
+        /* Estilo do botão de fechar */
+        .fecharModal {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .fecharModal:hover {
+            color: #F58220;
+        }
+
+        /* Estilizando o link com a classe "link-modal" */
+        .link-modal {
+            color: #005C46;
+            /* Cor laranja */
+            text-decoration: underline;
+            /* Adicione sublinhado (opcional) */
+        }
+
+        .link-modal:hover {
+            color: #003025;
+            /* Cor laranja mais escura ao passar o mouse (opcional) */
+        }
     </style>
 </head>
 
@@ -118,13 +200,33 @@
             <label for="">Telefone:</label>
             <input type="number" name="telefone" id="telefone" oninput="verificarCampos()">
         </div>
+        <div id="divlgpd">
+            <br>
+            <input type="checkbox" id="lgpd" onchange="verificarCampos()">
+            <label for="lgpd">Aceito os termos da LGPD</label>
+        </div>
+        <div id="modaldiv" style="text-align: right;">
+            <br>
+            <a href="#" id="abrirModal" class="link-modal">Saiba mais sobre a LGPD</a>
+        </div>
         <ul style="visibility: hidden;">
             <li style="visibility: hidden;"><a style="visibility: hidden;"
                     href="instagram://user?username=cresolalianca" id="meuLink"></a></li>
         </ul>
-        <div id="mensagem2" style="display: none;">Preencher todos os campos</div>
+        <div id="mensagem2" style="display: none;text-align: center;">Preencher todos os campos</div>
         <div id="botao" style="text-align: center;">
             <button style="text-align: center;" onclick="pegarDados()">Confirmar</button>
+        </div>
+        <!-- Modal -->
+        <div id="modal" class="modal">
+            <div class="modal-conteudo">
+                <span class="fecharModal" id="fecharModal">&times;</span>
+                <h2>LGPD - Lei Geral de Proteção de Dados</h2>
+                <p>A Lei Geral de Proteção de Dados Pessoais (LGPD), Lei n° 13.709/2018, foi promulgada para proteger os direitos fundamentais de liberdade e de privacidade e a livre formação da personalidade de cada indivíduo. A Lei fala sobre o tratamento de dados pessoais, dispostos em meio físico ou digital, feito por pessoa física ou jurídica de direito público ou privado, englobando um amplo conjunto de operações que podem ocorrer em meios manuais ou digitais.</p>
+                <p>Os dados registrados neste formulário, serão armazenados em nuvem, e serão gerenciados pela Cresol.</p>
+                <p>Estes, serão utilizados exclusivamente para realização do sorteio e futuros contatos para oferta de nossos serviços financeiros.</p>
+                <!-- Adicione o texto referente à LGPD aqui -->
+            </div>
         </div>
     </div>
     <script src="script.js"></script>
@@ -134,19 +236,25 @@
             var nome = document.getElementById('nome').value.toUpperCase()
             var cpf = document.getElementById('cpf').value;
             var telefone = document.getElementById('telefone').value;
+            var lgpdCheckbox = document.getElementById('lgpd');
+            let now = new Date
             const titulo = document.getElementById("titulo");
             const divnome = document.getElementById("divnome");
             const divcpf = document.getElementById("divcpf");
             const divtelefone = document.getElementById("divtelefone");
+            const divlgpd = document.getElementById("divlgpd");
             const botao = document.getElementById("botao");
             const mensagem2 = document.getElementById("mensagem2");
+            const modaldiv = document.getElementById("modaldiv");
             titulo.textContent = "Enviado!";
             divnome.style.display = "none";
             divcpf.style.display = "none";
             divtelefone.style.display = "none";
+            divlgpd.style.display = "none";
             botao.style.display = "none";
             mensagem2.style.display = "none";
-            await salvar(nome, cpf, telefone)
+            modaldiv.style.display = "none";
+            await salvar(now, nome, cpf, telefone)
             await clicarNoLink()
         }
         function clicarNoLink() {
@@ -159,8 +267,9 @@
             var nome = document.getElementById('nome').value;
             var cpf = document.getElementById('cpf').value;
             var telefone = document.getElementById('telefone').value;
+            var lgpdCheckbox = document.getElementById('lgpd');
 
-            if (nome !== "" && cpf !== "" && telefone !== "") {
+            if (nome !== "" && cpf !== "" && telefone !== "" && lgpdCheckbox.checked) {
                 document.getElementById('mensagem2').style.display = 'none';
                 document.getElementById("botao").style.display = 'block';
                 document.getElementById("botao").style.textAlign = 'center';
@@ -170,6 +279,31 @@
                 document.getElementById("botao").style.display = 'none';
             }
         }
+        // Função para abrir o modal
+        function abrirModal() {
+            var modal = document.getElementById("modal");
+            modal.style.display = "block";
+        }
+
+        // Função para fechar o modal
+        function fecharModal() {
+            var modal = document.getElementById("modal");
+            modal.style.display = "none";
+        }
+
+        // Evento de clique no link para abrir o modal
+        document.getElementById("abrirModal").addEventListener("click", abrirModal);
+
+        // Evento de clique no botão de fechar o modal
+        document.getElementById("fecharModal").addEventListener("click", fecharModal);
+
+        // Fechar o modal se o usuário clicar fora dele
+        window.addEventListener("click", function (event) {
+            var modal = document.getElementById("modal");
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        });
     </script>
 </body>
 
