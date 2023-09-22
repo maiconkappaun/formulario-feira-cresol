@@ -249,10 +249,12 @@
             <input type="number" name="telefone" id="telefone" oninput="verificarCampos()">
         </div>
         <div id="divsocio">
+            <label>É associado(a):</label>
+            <br>
             <div class="radio-group">
                 <input type="radio" name="socio" value="sim" id="socioSim" class="radio-socio" onchange="verificarCampos()">
                 <label for="socioSim">Sim</label>
-                <input type="radio" name="socio" value="nao" style="margin-left: 2em;" id="socioNao" class="radio-socio" onchange="verificarCampos()">
+                <input type="radio" name="socio" value="nao" style="margin-left: 7em;" id="socioNao" class="radio-socio" onchange="verificarCampos()">
                 <label for="socioNao">Não</label>
             </div>
         </div>
@@ -310,8 +312,8 @@
             const mensagem2 = document.getElementById("mensagem2");
             const modaldiv = document.getElementById("modaldiv");
             const divsocio = document.getElementById("divsocio");
-            titulo.textContent = "Enviado!";
-            titulo2.style.display = "none";
+            titulo.textContent = "Quase lá...";
+            titulo2.textContent = "Para finalizar, siga o perfil da Cresol Aliança no Instagram!";
             divnome.style.display = "none";
             divcpf.style.display = "none";
             divtelefone.style.display = "none";
