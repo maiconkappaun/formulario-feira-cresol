@@ -48,7 +48,8 @@
             background-color: #d254002a;
         }
 
-        #mensagem2 {
+        #mensagem2,
+        #mensagem3 {
             color: red;
             display: none;
         }
@@ -225,8 +226,16 @@
         .radio-group label {
             margin-right: 20px;
         }
-        #botao2{
+
+        #botao2 {
             display: none;
+        }
+
+        #cpf::placeholder {
+            color: #b1987448;
+            /* Cor do texto do placeholder */
+            font-style: italic;
+            /* Estilo do texto do placeholder (itálico) */
         }
     </style>
 </head>
@@ -245,7 +254,8 @@
         </div>
         <div id="divcpf">
             <label for="">CPF:</label>
-            <input type="number" name="cpf" id="cpf" oninput="verificarCampos()">
+            <input type="text" name="cpf" id="cpf" maxlength="14" placeholder="123.456.789-09"
+                oninput="verificarCampos()">
         </div>
         <div id="divtelefone">
             <label for="">Telefone:</label>
@@ -277,11 +287,12 @@
                     href="instagram://user?username=cresolalianca" id="meuLink"></a></li>
         </ul>
         <div id="mensagem2" style="display: none;text-align: center;">Preencher todos os campos</div>
+        <div id="mensagem3" style="display: none;text-align: center;">CPF inválido</div>
         <div id="botao" style="text-align: center;">
             <button style="text-align: center;" onclick="pegarDados()">Confirmar</button>
         </div>
         <div id="botao2" style="text-align: center;">
-            <button style="text-align: center; "  onclick="clicarNoLink()">Abrir Instagram</button>
+            <button style="text-align: center; " onclick="clicarNoLink()">Abrir Instagram</button>
         </div>
         <!-- Modal -->
         <div id="modal" class="modal">
@@ -302,8 +313,33 @@
         </div>
     </div>
     <script src="script.js"></script>
+    <script src="teste.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
+        // Função para aplicar a máscara ao CPF
+        function formatarCPF(cpf) {
+            cpf = cpf.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
+            cpf = cpf.replace(/(\d{3})(\d)/, '$1.$2'); // Insere o primeiro ponto
+            cpf = cpf.replace(/(\d{3})(\d)/, '$1.$2'); // Insere o segundo ponto
+            cpf = cpf.replace(/(\d{3})(\d{2})$/, '$1-$2'); // Insere o traço
+            return cpf;
+        }
+
+        // Função para atualizar o campo com a máscara
+        function mascaraCPF() {
+            var inputCPF = document.getElementById('cpf');
+            var valorCPF = inputCPF.value;
+
+            // Aplica a máscara
+            valorCPF = formatarCPF(valorCPF);
+
+            // Atualiza o valor no campo
+            inputCPF.value = valorCPF;
+        }
+
+        // Adiciona um evento de input para chamar a função de máscara quando o usuário digitar
+        var inputCPF = document.getElementById('cpf');
+        inputCPF.addEventListener('input', mascaraCPF);
         async function pegarDados() {
             var nome = document.getElementById('nome').value.toUpperCase()
             var cpf = document.getElementById('cpf').value;
@@ -330,6 +366,7 @@
             const botao = document.getElementById("botao");
             const botao2 = document.getElementById("botao2");
             const mensagem2 = document.getElementById("mensagem2");
+            const mensagem3 = document.getElementById("mensagem3");
             const modaldiv = document.getElementById("modaldiv");
             const divsocio = document.getElementById("divsocio");
             titulo.textContent = "Quase lá...";
@@ -341,6 +378,7 @@
             botao.style.display = "none";
             botao2.style.display = "block";
             mensagem2.style.display = "none";
+            mensagem3.style.display = "none";
             modaldiv.style.display = "none";
             divsocio.style.display = "none";
             await salvar(now, nome, cpf, telefone, escolha)
@@ -352,7 +390,7 @@
                 link.click();
             }
         }
-        function verificarCampos() {
+        async function verificarCampos() {
             var nome = document.getElementById('nome').value;
             var cpf = document.getElementById('cpf').value;
             var telefone = document.getElementById('telefone').value;
@@ -361,12 +399,20 @@
             var socioNao = document.getElementById('socioNao');
 
             if (nome !== "" && cpf !== "" && telefone !== "" && lgpdCheckbox.checked && (socioSim.checked || socioNao.checked)) {
-                document.getElementById('mensagem2').style.display = 'none';
-                document.getElementById("botao").style.display = 'block';
-                document.getElementById("botao").style.textAlign = 'center';
+                if (await validaCPF(cpf)) {
+                    document.getElementById('mensagem2').style.display = 'none';
+                    document.getElementById('mensagem3').style.display = 'none';
+                    document.getElementById("botao").style.display = 'block';
+                    document.getElementById("botao").style.textAlign = 'center';
+                } else {
+                    document.getElementById('mensagem3').style.display = 'block';
+                    document.getElementById('mensagem2').style.display = 'none';
+                    document.getElementById("botao").style.display = 'none';
+                }
 
             } else {
                 document.getElementById('mensagem2').style.display = 'block';
+                document.getElementById('mensagem3').style.display = 'none';
                 document.getElementById("botao").style.display = 'none';
             }
         }
