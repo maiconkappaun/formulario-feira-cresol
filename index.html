@@ -92,7 +92,32 @@
             font-size: 16pt;
         }
 
-        #botao {
+        /* Estilo do select */
+        select {
+            padding: 10px;
+            border: none;
+            border-bottom: 2px solid #F58220;
+            margin: 10px;
+            width: 90%;
+            outline: none;
+            font-size: 18pt;
+        }
+
+        /* Estilo do select quando em foco (selecionado) */
+        select:focus {
+            background-color: #d254002a;
+        }
+
+        /* Estilo das opções do select */
+        select option {
+            background-color: #fff;
+            /* Cor de fundo */
+            color: #F58220;
+            /* Cor do texto */
+            font-size: 18pt;
+        }
+
+        F #botao {
             display: none;
         }
 
@@ -240,7 +265,7 @@
     </style>
 </head>
 
-<body>
+<body onload="verificarCampos()">
     <div id="quiz-container">
         <h1 style="text-align: center;" id="titulo">Quase lá...</h1>
         <h3 style="text-align: center;" id="titulo2">Cadastre-se e concora a prêmios!</h3>
@@ -261,6 +286,147 @@
             <label for="">Telefone:</label>
             <input type="number" name="telefone" id="telefone" oninput="verificarCampos()">
         </div>
+        <div id="dividade">
+            <label>Selecione sua idade:</label>
+            <br>
+            <div class="radio-group">
+                <input type="radio" name="idade" value="sim" id="18anos" class="radio-socio"
+                    onchange="verificarCampos()">
+                <label for="18anos">1 - 18</label>
+                <input type="radio" name="idade" value="nao" style="margin-left: 8em;" id="40anos" class="radio-socio"
+                    onchange="verificarCampos()">
+                <label for="40anos">19 - 40</label>
+                <input type="radio" name="idade" value="nao" style="margin-left: 18em;" id="acimaAnos"
+                    class="radio-socio" onchange="verificarCampos()">
+                <label for="acimaAnos">Acima de 40</label>
+            </div>
+        </div>
+        <br>
+        <div id="divmunicipios">
+            <label for="municipios">Município onde reside:</label>
+            <select id="municipios" name="municipios" onchange="verificarCampos()">
+                <option value="" disabled selected hidden>Selecione uma opção</option>
+                <option value="Abelardo Luz">Abelardo Luz</option>
+                <option value="Água Doce">Água Doce</option>
+                <option value="Águas de Chapecó">Águas de Chapecó</option>
+                <option value="Águas Frias">Águas Frias</option>
+                <option value="Alto Bela Vista">Alto Bela Vista</option>
+                <option value="Anchieta">Anchieta</option>
+                <option value="Arabutã">Arabutã</option>
+                <option value="Arroio Trinta">Arroio Trinta</option>
+                <option value="Arvoredo">Arvoredo</option>
+                <option value="Bandeirante">Bandeirante</option>
+                <option value="Barra Bonita">Barra Bonita</option>
+                <option value="Belmonte">Belmonte</option>
+                <option value="Bom Jesus">Bom Jesus</option>
+                <option value="Bom Jesus do Oeste">Bom Jesus do Oeste</option>
+                <option value="Caçador">Caçador</option>
+                <option value="Caibi">Caibi</option>
+                <option value="Calmon">Calmon</option>
+                <option value="Campo Erê">Campo Erê</option>
+                <option value="Capinzal">Capinzal</option>
+                <option value="Catanduvas">Catanduvas</option>
+                <option value="Caxambu do Sul">Caxambu do Sul</option>
+                <option value="Chapecó">Chapecó</option>
+                <option value="Concórdia">Concórdia</option>
+                <option value="Cordilheira Alta">Cordilheira Alta</option>
+                <option value="Coronel Freitas">Coronel Freitas</option>
+                <option value="Coronel Martins">Coronel Martins</option>
+                <option value="Cunha Porã">Cunha Porã</option>
+                <option value="Cunhataí">Cunhataí</option>
+                <option value="Descanso">Descanso</option>
+                <option value="Dionísio Cerqueira">Dionísio Cerqueira</option>
+                <option value="Entre Rios">Entre Rios</option>
+                <option value="Erval Velho">Erval Velho</option>
+                <option value="Faxinal dos Guedes">Faxinal dos Guedes</option>
+                <option value="Flor do Sertão">Flor do Sertão</option>
+                <option value="Formosa do Sul">Formosa do Sul</option>
+                <option value="Fraiburgo">Fraiburgo</option>
+                <option value="Galvão">Galvão</option>
+                <option value="Guaraciaba">Guaraciaba</option>
+                <option value="Guarujá do Sul">Guarujá do Sul</option>
+                <option value="Guatambu">Guatambu</option>
+                <option value="Herval d'Oeste">Herval d'Oeste</option>
+                <option value="Ibiam">Ibiam</option>
+                <option value="Ibicaré">Ibicaré</option>
+                <option value="Iomerê">Iomerê</option>
+                <option value="Ipira">Ipira</option>
+                <option value="Iporã do Oeste">Iporã do Oeste</option>
+                <option value="Ipuaçu">Ipuaçu</option>
+                <option value="Ipumirim">Ipumirim</option>
+                <option value="Iraceminha">Iraceminha</option>
+                <option value="Irani">Irani</option>
+                <option value="Irati">Irati</option>
+                <option value="Itá">Itá</option>
+                <option value="Itapiranga">Itapiranga</option>
+                <option value="Jaborá">Jaborá</option>
+                <option value="Jardinópolis">Jardinópolis</option>
+                <option value="Joaçaba">Joaçaba</option>
+                <option value="Jupiá">Jupiá</option>
+                <option value="Lacerdópolis">Lacerdópolis</option>
+                <option value="Lajeado Grande">Lajeado Grande</option>
+                <option value="Lebon Régis">Lebon Régis</option>
+                <option value="Lindóia do Sul">Lindóia do Sul</option>
+                <option value="Luzerna">Luzerna</option>
+                <option value="Macieira">Macieira</option>
+                <option value="Maravilha">Maravilha</option>
+                <option value="Marema">Marema</option>
+                <option value="Matos Costa">Matos Costa</option>
+                <option value="Modelo">Modelo</option>
+                <option value="Mondaí">Mondaí</option>
+                <option value="Nova Erechim">Nova Erechim</option>
+                <option value="Nova Itaberaba">Nova Itaberaba</option>
+                <option value="Novo Horizonte">Novo Horizonte</option>
+                <option value="Ouro">Ouro</option>
+                <option value="Ouro Verde">Ouro Verde</option>
+                <option value="Paial">Paial</option>
+                <option value="Palma Sola">Palma Sola</option>
+                <option value="Palmitos">Palmitos</option>
+                <option value="Paraíso">Paraíso</option>
+                <option value="Passos Maia">Passos Maia</option>
+                <option value="Peritiba">Peritiba</option>
+                <option value="Pinhalzinho">Pinhalzinho</option>
+                <option value="Pinheiro Preto">Pinheiro Preto</option>
+                <option value="Piratuba">Piratuba</option>
+                <option value="Planalto Alegre">Planalto Alegre</option>
+                <option value="Ponte Serrada">Ponte Serrada</option>
+                <option value="Presidente Castello Branco">Presidente Castello Branco</option>
+                <option value="Princesa">Princesa</option>
+                <option value="Quilombo">Quilombo</option>
+                <option value="Rio das Antas">Rio das Antas</option>
+                <option value="Riqueza">Riqueza</option>
+                <option value="Romelândia">Romelândia</option>
+                <option value="Saltinho">Saltinho</option>
+                <option value="Salto Veloso">Salto Veloso</option>
+                <option value="Santa Helena">Santa Helena</option>
+                <option value="Santa Terezinha do Progresso">Santa Terezinha do Progresso</option>
+                <option value="Santiago do Sul">Santiago do Sul</option>
+                <option value="São Bernardino">São Bernardino</option>
+                <option value="São Carlos">São Carlos</option>
+                <option value="São Domingos">São Domingos</option>
+                <option value="São João do Oeste">São João do Oeste</option>
+                <option value="São José do Cedro">São José do Cedro</option>
+                <option value="São Lourenço do Oeste">São Lourenço do Oeste</option>
+                <option value="São Miguel da Boa Vista">São Miguel da Boa Vista</option>
+                <option value="São Miguel do Oeste">São Miguel do Oeste</option>
+                <option value="Saudades">Saudades</option>
+                <option value="Seara">Seara</option>
+                <option value="Serra Alta">Serra Alta</option>
+                <option value="Sul Brasil">Sul Brasil</option>
+                <option value="Tangará">Tangará</option>
+                <option value="Tigrinhos">Tigrinhos</option>
+                <option value="Treze Tílias">Treze Tílias</option>
+                <option value="Tunápolis">Tunápolis</option>
+                <option value="União do Oeste">União do Oeste</option>
+                <option value="Vargeão">Vargeão</option>
+                <option value="Vargem Bonita">Vargem Bonita</option>
+                <option value="Videira">Videira</option>
+                <option value="Xanxerê">Xanxerê</option>
+                <option value="Xavantina">Xavantina</option>
+                <option value="Outros">Outros</option>
+            </select>
+        </div>
+        <br>
         <div id="divsocio">
             <label>É associado(a):</label>
             <br>
@@ -344,11 +510,16 @@
             var nome = document.getElementById('nome').value.toUpperCase()
             var cpf = document.getElementById('cpf').value;
             var telefone = document.getElementById('telefone').value;
+            var municipio = document.getElementById('municipios').value;
             var lgpdCheckbox = document.getElementById('lgpd');
             let now = new Date
             // Obtenha uma referência aos radio buttons
             var radioSim = document.getElementById('socioSim');
             var radioNao = document.getElementById('socioNao');
+
+            var idade1 = document.getElementById('18anos');
+            var idade2 = document.getElementById('40anos');
+            var idade3 = document.getElementById('acimaAnos');
 
             // Verifique qual radio button está selecionado
             var escolha = "";
@@ -357,11 +528,20 @@
             } else if (radioNao.checked) {
                 escolha = "Não";
             }
+            var escolhaIdade = "";
+            if (idade1.checked) {
+                escolhaIdade = "1 - 18";
+            } else if (idade2.checked) {
+                escolhaIdade = "19 - 40";
+            } else if (idade3.checked) {
+                escolhaIdade = "Acima de 40";
+            }
             const titulo = document.getElementById("titulo");
             const titulo2 = document.getElementById("titulo2");
             const divnome = document.getElementById("divnome");
             const divcpf = document.getElementById("divcpf");
             const divtelefone = document.getElementById("divtelefone");
+            const divmunicipios = document.getElementById("divmunicipios");
             const divlgpd = document.getElementById("divlgpd");
             const botao = document.getElementById("botao");
             const botao2 = document.getElementById("botao2");
@@ -369,11 +549,13 @@
             const mensagem3 = document.getElementById("mensagem3");
             const modaldiv = document.getElementById("modaldiv");
             const divsocio = document.getElementById("divsocio");
+            const dividade = document.getElementById("dividade");
             titulo.textContent = "Quase lá...";
             titulo2.textContent = "Para finalizar, siga o perfil da Cresol Aliança no Instagram!";
             divnome.style.display = "none";
             divcpf.style.display = "none";
             divtelefone.style.display = "none";
+            divmunicipios.style.display = "none";
             divlgpd.style.display = "none";
             botao.style.display = "none";
             botao2.style.display = "block";
@@ -381,7 +563,8 @@
             mensagem3.style.display = "none";
             modaldiv.style.display = "none";
             divsocio.style.display = "none";
-            await salvar(now, nome, cpf, telefone, escolha)
+            dividade.style.display = "none";
+            await salvar(now, nome, cpf, telefone, escolha, escolhaIdade, municipio)
             await clicarNoLink()
         }
         function clicarNoLink() {
@@ -397,8 +580,12 @@
             var lgpdCheckbox = document.getElementById('lgpd');
             var socioSim = document.getElementById('socioSim');
             var socioNao = document.getElementById('socioNao');
+            var idade1 = document.getElementById('18anos');
+            var idade2 = document.getElementById('40anos');
+            var idade3 = document.getElementById('acimaAnos');
+            var municipio = document.getElementById('municipios').value;
 
-            if (nome !== "" && cpf !== "" && telefone !== "" && lgpdCheckbox.checked && (socioSim.checked || socioNao.checked)) {
+            if (nome !== "" && cpf !== "" && telefone !== "" && lgpdCheckbox.checked && (socioSim.checked || socioNao.checked) && (idade1.checked || idade2.checked || idade3.checked) && municipio !== "") {
                 if (await validaCPF(cpf)) {
                     document.getElementById('mensagem2').style.display = 'none';
                     document.getElementById('mensagem3').style.display = 'none';
